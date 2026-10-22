@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚖️ Justice AI
+# ⚖️ Multimodal AI
 
 ### Legal help for the disputes nobody has time to fight.
 
