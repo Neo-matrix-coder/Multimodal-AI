@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Justice AI — deep cinematic dark theme */
+    --background: 230 35% 5%;
+    --foreground: 220 20% 96%;
+
+    --card: 230 30% 8%;
+    --card-foreground: 220 20% 96%;
+
+    --popover: 230 32% 7%;
+    --popover-foreground: 220 20% 96%;
+
+    --primary: 250 85% 66%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 230 22% 14%;
+    --secondary-foreground: 220 20% 92%;
+
+    --muted: 230 20% 14%;
+    --muted-foreground: 222 12% 62%;
+
+    --accent: 190 90% 55%;
+    --accent-foreground: 230 35% 6%;
+
+    --destructive: 0 72% 56%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 230 20% 18%;
+    --input: 230 20% 16%;
+    --ring: 250 85% 66%;
+
+    --radius: 1rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background-image:
+      radial-gradient(60% 50% at 50% 0%, hsl(250 85% 66% / 0.10), transparent 70%),
+      radial-gradient(40% 40% at 100% 10%, hsl(190 90% 55% / 0.07), transparent 70%);
+    background-attachment: fixed;
+  }
+  ::selection {
+    background: hsl(var(--primary) / 0.35);
+    color: hsl(var(--foreground));
+  }
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.6);
+    background-clip: content-box;
+  }
+}
+
+@layer components {
+  /* Glassmorphism surface */
+  .glass {
+    @apply border border-white/10 bg-white/[0.04] backdrop-blur-xl;
+  }
+  .glass-strong {
+    @apply border border-white/15 bg-white/[0.07] backdrop-blur-2xl;
+  }
+  .glass-card {
+    @apply glass rounded-2xl shadow-glass;
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-brand-gradient bg-clip-text text-transparent;
+    background-size: 200% 200%;
+  }
+  .text-gradient-animate {
+    @apply text-gradient animate-gradient-x;
+  }
+
+  /* Ambient glow blob */
+  .glow-blob {
+    @apply pointer-events-none absolute rounded-full blur-3xl;
+  }
+
+  /* Hover-physics card lift */
+  .card-lift {
+    @apply transition-all duration-500 ease-out will-change-transform;
+  }
+  .card-lift:hover {
+    @apply -translate-y-1.5;
+    box-shadow: 0 20px 60px -20px hsl(var(--primary) / 0.4);
+  }
+
+  /* Animated gradient border */
+  .gradient-border {
+    position: relative;
+    background-clip: padding-box;
+  }
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.8), transparent 40%, hsl(var(--accent) / 0.6));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Shimmer skeleton */
+  .skeleton {
+    @apply relative overflow-hidden rounded-md bg-white/5;
+  }
+  .skeleton::after {
+    content: "";
+    @apply absolute inset-0;
+    background: linear-gradient(90deg, transparent, hsl(var(--foreground) / 0.06), transparent);
+    transform: translateX(-100%);
+    animation: shimmer 1.8s infinite;
+  }
+}
+
+@layer utilities {
+  .bg-grid {
+    background-image: theme("backgroundImage.grid-pattern");
+    background-size: 56px 56px;
+  }
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent);
+    mask-image: linear-gradient(to bottom, #000 60%, transparent);
+  }
+  .mask-radial {
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 40%, transparent 75%);
+    mask-image: radial-gradient(ellipse at center, #000 40%, transparent 75%);
+  }
+  .perspective {
+    perspective: 1200px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

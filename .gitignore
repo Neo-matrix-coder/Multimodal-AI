@@ -1,0 +1,28 @@
+# Dependencies & build
+node_modules/
+.next/
+out/
+dist/
+build/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# Env
+.env*
+!.env.example
+
+# Local legal PDFs & archives
+*.pdf
+*.zip
+*.tar.gz
+
+# OS metadata
+.DS_Store
+Thumbs.db
+*.log
